@@ -5,14 +5,13 @@ export default function ContentHome() {
   const [db, setDb] = useState([]);
   
   useEffect(() => {
-    GetallPizzas();
+    GetPublicaciones();
   }, []);
   
-  const GetallPizzas = async () => {
-    const data = await fetch("https://ecommerce.juanpenailillo.repl.co/productos/")
-    const pizzas = await data.json()
-    setDb(pizzas)
-    
+  const GetPublicaciones = async () => {
+    const data = await fetch("http://localhost:3000/publicaciones")
+    const publicaciones = await data.json()
+    setDb(publicaciones)
   };
   return (
     <div className='contenedorCard'>

@@ -21,15 +21,15 @@ function FormUser() {
 
   
     const getUsuarioData = async () => {
-        const urlServer = "https://ecommerce.juanpenailillo.repl.co/usuario";
+        const urlServer = "http://localhost:3000/usuario";
         const token = localStorage.getItem("token");
-        
         try {
         const { data } = await axios.get(urlServer, {
-            headers: { Authorization: "Bearer " + token },
+            headers: { Authorization: "Bearer " + token }
         });
         setUsuarioLocal(data[0]);
-        setUsuarioGlobal(data[0]);      
+        setUsuarioGlobal(data[0]);  
+        localStorage.setItem("idUser", data[0].id);    
         } catch ({ response: { data: message } }) {
         alert(message + " No hay data");
         console.log(message);
@@ -84,7 +84,7 @@ function FormUser() {
                     
                 })
                 console.log(usuarioEdit);
-                const urlServer = "https://ecommerce.juanpenailillo.repl.co/usuario/"+id.value;
+                const urlServer = "http://localhost:3000/usuario/"+id.value;
                 console.log(usuarioEdit);
                 debugger
                 try {

@@ -38,19 +38,18 @@ function App() {
           <Context.Provider value={{ usuario, setUsuario }} >
             <BrowserRouter>
               <Header/>
-                <Routes>
-                  <Route path="/" element={<Home />}></Route>
-                  <Route path="/Signin" element={<Login />} />
-                  <Route path="/Registrar" element={<Registrar />} />
-                  <Route path="/Perfil" element={<Perfil />} />  
-                  <Route path="/usuario/miscompras" element={<MisCompras />} />   
-                  <Route path="/usuario/productos" element={<Productos />} />   
-                  <Route path="/usuario/publicacion" element={<Publicacion />} />  
-                  <Route path="/Plantas/:id" element={<Plantas />} />
-                  <Route path="/Carrito" element={<Carritos />} />
-                  <Route path='/Success' element={<Success />} />
-              
-                </Routes>                    
+                  <Routes>
+                    <Route path="/" element={<Home />}></Route>
+                    <Route path="/Signin" element={<Login />} />
+                    <Route path="/Registrar" element={<Registrar />} />
+                    <Route path="/Perfil" element={<Perfil />} />  
+                    <Route path="/usuario/miscompras" element={<MisCompras />} />   
+                    <Route path="/usuario/productos" element={<Productos />} />   
+                    <Route path="/usuario/publicacion" element={<Publicacion />} />  
+                    <Route path="/Plantas/:id" element={<Plantas />} />
+                    <Route path="/Carrito" element={<Carritos />} />
+                    <Route path='/Success' element={<Success />} />
+                  </Routes>                   
               <Footer />
             </BrowserRouter>
           </Context.Provider> 

@@ -18,7 +18,7 @@ export default function Plantas() {
 
   
   const getPizza = async () => {
-    const data = await fetch(`https://ecommerce.juanpenailillo.repl.co/productos/${id}`)
+    const data = await fetch(`http://localhost:3000/productos/${id}`)
     const users = await data.json()
     setInfo(users)
   };
@@ -31,7 +31,7 @@ export default function Plantas() {
             <Card className="text-center sombra">
               {
                 info.map(detalle =>
-                        <div div key={detalle.id } className="CardDetalle">
+                        <div div key={detalle.id } className="CardDetalle d-flex justify-content-between">
                         <img src={ detalle.imagen1} alt="" className="imgDetalle" />
                         <div className="detDescripcion">
                           <Card.Title className="titulo"><h1>{ detalle.titulo}</h1></Card.Title>
@@ -40,7 +40,7 @@ export default function Plantas() {
                           </Card.Text>
                           <p>Precio: ${detalle.precio}</p>
                         </div>
-                        {<Button variant="secondary"  onClick={e => setProducts(current => 
+                        {<Button variant="secondary" onClick={e => setProducts(current => 
                             [...current,{
                                   id:detalle.id,
                                   name:detalle.titulo,

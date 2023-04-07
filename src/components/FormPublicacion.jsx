@@ -1,13 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import Menu from './MenuPub';
 import { useState,useContext } from "react";
 import Context from '../context/Context';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom";
 
 
@@ -16,6 +13,7 @@ function FormProducts() {
     const [images, setImages] = useState([]);
     const  setUsuario  = useContext(Context);
     const navigate = useNavigate();
+    
     
     
     const handleSetUsuario = ({ target: { value, name } }) => {

@@ -13,7 +13,7 @@ export default function CardPizza(props) {
     <Card className='CardProds'>
       <img variant="top" src={props.item.imagen1} className="imgProds" />
       <Card.Body>
-      <Form.Control key="titulo" type="text" placeholder={props.item.titulo} className="mb-3 p-3 text-center fw-bold fs-5" disabled readOnly />
+      <Form.Control key="titulo" controlId="formTitulo" type="text" placeholder={props.item.titulo} className="mb-3 p-3 text-center fw-bold fs-5" disabled readOnly />
         <div className='CardText'>
           <b>Descripción:</b>
           <div >

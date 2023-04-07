@@ -11,27 +11,22 @@ export default function Carritos() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   let botones;
+
     async function enviarFormulario(e) {
       e.preventDefault()
        
-      const endpoint = "https://ecommerce.juanpenailillo.repl.co/comprar/";
+      const endpoint = "http://localhost:3000/comprar/";
       let objProduct = products;
-      const response = await fetch(endpoint, {
-                          method: 'POST',
+      const response = await fetch(endpoint, { method: 'POST',
                           headers: {
                             'Content-Type': 'application/json',
                             'Authorization': 'Bearer ' + token
-                            },
-                            body: JSON.stringify(objProduct)
-        });
+                            }, body: JSON.stringify(objProduct) });
       console.log(response)
       navigate("/success");
     } 
-    if(token){
-      botones = <><Button className='btn btn-info text-center' onClick={enviarFormulario} >Pagar</Button></>
-    }else{
-      botones = <><h5>Debe estar logueado para finalizar la compra</h5></>
-    }
+    if(token){  botones = <><Button className='btn btn-info text-center' onClick={enviarFormulario} >Pagar</Button></>
+    }else{ botones = <><h5>Debe estar logueado para finalizar la compra</h5></> }
 
   return (
     <Fragment>
@@ -39,27 +34,22 @@ export default function Carritos() {
         <Row className="w-100">
           <Col xs={10} md={8} lg={10} className="mx-auto">
             <Card className="text-center sombra">
-                <Card.Body>   
-                  <Form.Control key="titulo" type="text" placeholder="Detalle del Pedido" className="mb-3 p-3 text-center may" disabled readOnly />
-                  <div className='text-center'>
-                    <ul>
-                    {
-                        products
-                          .map(item =>
+              <Card.Body>   
+                <Form.Control key="titulo" type="text" placeholder="Detalle del Pedido" className="mb-3 p-3 text-center may" disabled readOnly />
+                <div className='text-center'>
+                  <ul>
+                    { products.map(item =>
                             <div className='row'>
                               <div className='col-sm' style={{textAlign: "left"}}>{item.name}</div>
                               <div className='col-sm'>{item.price}</div>
-                            </div>
-                        )
+                            </div>)
                     }
                   </ul>
                 </div>
                 <div className='text-center'>
-                  <h5>TOTAL: {
-                                products.reduce((x,s)=> x + s.price,0)
-                        }</h5>
+                  <h5>TOTAL: { products.reduce((x,s)=> x + s.price,0) }</h5>
                 </div>
-                </Card.Body>
+              </Card.Body>
             </Card>
           </Col>
           <div className='text-center mt-2'>

@@ -19,7 +19,7 @@ function Registrar() {
   };
 
   const registrarUsuario = async () => {
-    const urlServer = "https://ecommerce.juanpenailillo.repl.co/usuarios";
+    const urlServer = "http://localhost:3000/usuarios";
     //const endpoint = "/usuarios";
     try {
       await axios.post(urlServer, usuario);
