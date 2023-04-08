@@ -12,8 +12,11 @@ import axios from "axios";
 
 function FormProducts() {
     const setUsuario  = useContext(Context);
+    const datosUser = localStorage.getItem("dataUser");
+    const datos = JSON.parse(datosUser);
+    
     const navigate = useNavigate();
-    const [publicacion, setUPublicacion] = useState({"usuario_id":setUsuario.usuario.id});
+    const [publicacion, setUPublicacion] = useState({"usuario_id":datos.id});
 
     
     const handleSetUsuario = ({ target: { value, name } }) => {
