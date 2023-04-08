@@ -9,13 +9,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Context from '../context/Context';
-import { useContext } from "react";
 import axios from "axios";
 
 
 export default function Miscompras() { 
-    const  setUsuario  = useContext(Context);
     const [db, setDb] = useState([]);
     const datosUser = localStorage.getItem("dataUser");
     const datos = JSON.parse(datosUser);

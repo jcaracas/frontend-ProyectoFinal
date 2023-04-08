@@ -40,14 +40,14 @@ function Login() {
   };
   return (
     <div>
-      <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-        <FloatingLabel key="emailUser" controlId="floatingInput2" label="Email" className="mb-3" >
-            <Form.Control type="email" placeholder="Ingresa tu email" name='email' defaultValue={usuario.email} onChange={handleSetUsuario} />
+      <Form.Group className="mb-3 text-start">
+        <FloatingLabel key="emailUser"  label="Email" className="mb-3" >
+            <Form.Control id='emailcontrol' type="email" placeholder="Ingresa tu email" name='email' defaultValue={usuario.email} onChange={handleSetUsuario} />
         </FloatingLabel>
         <Form.Text className="text-muted">Nunca compartiremos tu correo electrónico con nadie más.</Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
-        <FloatingLabel key="pass"   label="Password" controlId="BasicPassword">
+      <Form.Group className="mb-3 text-start" >
+        <FloatingLabel key="pass"   label="Password" >
             <Form.Control type="password" placeholder="Ingresa tu Password" id='passwd' name="password" value={usuario.password} onChange={handleSetUsuario}/>
         </FloatingLabel>
       </Form.Group>

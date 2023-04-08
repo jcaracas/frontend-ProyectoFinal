@@ -1,7 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState,useContext } from "react";
-import Context from '../context/Context';
+import { useState } from "react";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,7 +10,6 @@ import axios from "axios";
 
 
 function FormProducts() {
-    const setUsuario  = useContext(Context);
     const datosUser = localStorage.getItem("dataUser");
     const datos = JSON.parse(datosUser);
     
@@ -21,12 +19,12 @@ function FormProducts() {
     
     const handleSetUsuario = ({ target: { value, name } }) => {
         const field = {};
-        if (name=='categoria_id') {
+        if (name==='categoria_id') {
             let newValue=parseInt(value)
             field[name] = newValue;
             console.log(newValue);
         }else{
-            if (name=='stock') {
+            if (name==='stock') {
                 let newValue=parseInt(value)
                 field[name] = newValue;
                 console.log(newValue);
