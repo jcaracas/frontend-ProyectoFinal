@@ -8,6 +8,8 @@ import Context from '../context/Context';
 
 function FormCompras() {
     const  setUsuario  = useContext(Context);
+    const datosUser = localStorage.getItem("dataUser");
+    const datos = JSON.parse(datosUser);
 
     return (
         <Form >
@@ -15,7 +17,7 @@ function FormCompras() {
                 <div key="img" className='divImgPerfil'>
                     <div className='imgPerfil'></div>
                 </div>
-                <Form.Control key="titulo" type="text" id='tituloCabecera' placeholder={ setUsuario.usuario.nombre } className="mb-3 p-3 text-center may" disabled readOnly />
+                <Form.Control key="titulo" type="text" id='tituloCabecera' placeholder={ datos.nombre } className="mb-3 p-3 text-center may" disabled readOnly />
             </div>
             <div className='cabeceraComras'>
                 <Compras />

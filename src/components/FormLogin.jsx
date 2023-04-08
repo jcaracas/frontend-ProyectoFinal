@@ -2,15 +2,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Context from '../context/Context';
 import axios from "axios";
-
 
 function Login() {
 
-  const { setUsuario } = useContext(Context);
   const navigate = useNavigate();
   const [usuario, setUsuarioLocal] = useState({});
 
@@ -22,23 +19,25 @@ function Login() {
   };
 
   const iniciarSesion = async () => {
+    
     const urlServer = "http://localhost:3000/login";
     //const endpoint = "/login";
     const { email, password } = usuario;
     try {
       if (!email || !password) return alert("Email y password obligatorias");
-      const { data: token } = await axios.post(urlServer, usuario);
+      const data = await axios.post(urlServer, usuario);
       alert("Usuario identificado con éxito 😀");
+      const token = data.data.token
       localStorage.setItem("token", token);
-      setUsuario()
-      navigate("/Perfil");
+      const {jsResult} = data.data
+      localStorage.setItem("dataUser", jsResult);
+      navigate("/");
       
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
     }
   };
-
   return (
     <div>
       <Form.Group className="mb-3 text-start" controlId="formBasicEmail">

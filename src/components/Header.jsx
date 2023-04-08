@@ -16,7 +16,7 @@ import ProductContext from '../context/ProductContext';
 function Header() {
   const navigate = useNavigate();
   const { products} = useContext(ProductContext)
-  const { usuario, setUsuario } = useContext(Context);
+  const {  setUsuario } = useContext(Context);
   
   const token = localStorage.getItem("token");
   const logout = () => {

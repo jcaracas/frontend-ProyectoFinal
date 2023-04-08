@@ -1,16 +1,16 @@
 import Form from 'react-bootstrap/Form';
 import Menu from './MenuPub';
-import Context from '../context/Context';
 import axios from "axios";
-import { useState,useEffect,useContext } from "react";
+import { useState,useEffect } from "react";
 import Publicacion from './Publicacion';
 
 
 
 function FormProducts() {
-    const  setUsuario  = useContext(Context);
     const [publicacion,setPublicacion]=useState([])
-
+    const datosUser = localStorage.getItem("dataUser");
+    const datos = JSON.parse(datosUser);
+    
     const getPublicacionesData = async () => {
         const urlServer = "http://localhost:3000/usuario/publicaciones";
         const token = localStorage.getItem("token");
@@ -35,7 +35,7 @@ function FormProducts() {
                 <div key="img" className='divImgPerfil'>
                     <div className='imgPerfil'></div>
                 </div>
-                <Form.Control key="titulo" type="text" id='tituloCabecera' placeholder={ setUsuario.usuario.nombre } className="mb-3 p-3 text-center may" disabled readOnly />
+                <Form.Control key="titulo" type="text" id='tituloCabecera' placeholder={datos.nombre} className="mb-3 p-3 text-center may" disabled readOnly />
             </div>
             <div className='cabeceraComras'>
                 <Menu />

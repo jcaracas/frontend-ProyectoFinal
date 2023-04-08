@@ -18,10 +18,9 @@ export default function Carritos() {
       const endpoint = "http://localhost:3000/comprar/";
       let objProduct = products;
       const response = await fetch(endpoint, { method: 'POST',
-                          headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + token
-                            }, body: JSON.stringify(objProduct) });
+        headers: {'Content-Type':'application/json',
+          'Authorization': 'Bearer ' + token
+          }, body: JSON.stringify(objProduct) });
       console.log(response)
       navigate("/success");
     } 

@@ -17,6 +17,9 @@ import axios from "axios";
 export default function Miscompras() { 
     const  setUsuario  = useContext(Context);
     const [db, setDb] = useState([]);
+    const datosUser = localStorage.getItem("dataUser");
+    const datos = JSON.parse(datosUser);
+    
 
     useEffect(() => {
         GetallCompras();
@@ -47,7 +50,7 @@ export default function Miscompras() {
                       <div key="img" className='divImgPerfil'>
                           <div className='imgPerfil'></div>
                       </div>
-                      <Form.Control key="titulo" type="text" id='tituloCabecera' placeholder={ setUsuario.usuario.nombre } className="mb-3 p-3 text-center may" disabled readOnly />
+                      <Form.Control key="titulo" type="text" id='tituloCabecera' placeholder={ datos.nombre } className="mb-3 p-3 text-center may" disabled readOnly />
                     </div>
             
                     {['lg'].map((expand) => (

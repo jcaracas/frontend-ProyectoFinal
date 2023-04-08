@@ -6,38 +6,51 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
 function FormProducts() {
-    const [images, setImages] = useState([]);
-    const  setUsuario  = useContext(Context);
+    const setUsuario  = useContext(Context);
     const navigate = useNavigate();
-    
-    
+    const [publicacion, setUPublicacion] = useState({"usuario_id":setUsuario.usuario.id});
+
     
     const handleSetUsuario = ({ target: { value, name } }) => {
         const field = {};
-        field[name] = value;
-        
-      };
-      const handleChange = (e) => {
-        setImages((images) => [...images, URL.createObjectURL(e.files[0])]);
-        return URL.revokeObjectURL(e.files[0])
+        if (name=='categoria_id') {
+            let newValue=parseInt(value)
+            field[name] = newValue;
+            console.log(newValue);
+        }else{
+            if (name=='stock') {
+                let newValue=parseInt(value)
+                field[name] = newValue;
+                console.log(newValue);
+            }
+            field[name] = value;
         }
-    
-      const deleteImage = (blob) => {
-        setImages(images.filter(x => x !== blob));
-        document.getElementById("cargaImg").value = "";   
-      };
+        setUPublicacion({ ...publicacion, ...field });
+    };
+      
       const cancelar = ()=>{
         navigate("/");
       }
+      const guardarPublicacion = async () => {
+        const urlServer = "http://localhost:3000/usuario/publicaciones";
+        try {
+          await axios.post(urlServer, publicacion);
+          alert("Publicacion registrada con éxito");
+          navigate("/");
+        } catch (error) {
+          alert("Algo salió mal ...");
+          console.log(error);
+        }
+      };
     
     return(
         <div>
-            <Form.Control key="titulo" type="text" placeholder="Nueva Publicación" className="mb-3 p-3 text-center may" disabled readOnly />
-
+            <Form.Control key="titulo" type="text" placeholder="Ingresar Nueva Publicación" className="mb-3 p-3 text-center may" disabled readOnly />
             <div>
                 <FloatingLabel key="titulo" controlId="InputTitulo" label="Titulo" className="mb-3" >
                     <Form.Control name="titulo" type="text" placeholder="Titulo" required onChange={handleSetUsuario}/>
@@ -50,14 +63,14 @@ function FormProducts() {
                     </Col>
                     <Col>
                         <FloatingLabel key="stock" controlId="InputPrecio" label="Stock" className="mb-3" >
-                            <Form.Control name="stock" type="text" placeholder="Stock" required onChange={handleSetUsuario}/>
+                            <Form.Control name="stock" type="number" placeholder="Stock" required onChange={handleSetUsuario}/>
                         </FloatingLabel>
                     </Col>
                     <Col>
                         <FloatingLabel key="selectCat" controlId="SelectCategoria" label="Seleccione Categoria">
-                            <Form.Select  aria-label="Seleccione Categoria" onChange={handleSetUsuario}>
+                            <Form.Select  aria-label="Seleccione Categoria" name='categoria_id' onChange={handleSetUsuario}>
                                 <option></option>
-                                <option value="1">Gomero</option>
+                                <option typeof='number' value="1">Gomero</option>
                                 <option value="2">Gardenia</option>
                                 <option value="3">Dolar Argentino</option>
                             </Form.Select>
@@ -65,26 +78,16 @@ function FormProducts() {
                     </Col>
                     
                 </Row>
-                <FloatingLabel key="descrio" controlId="floatingTextarea2" label="Descripción">
+                <FloatingLabel key="descrio" controlId="floatingdescrip" label="Descripción">
                     <Form.Control type="textarea" placeholder="..." name="descripcion" style={{ height: '100px' }} onChange={handleSetUsuario}/>
                 </FloatingLabel>
-                <div className='mt-3 mb-3'>
-                    <Form.Control key="img" id='cargaImg' type="file" name='img' placeholder="Subir un archivo en JPG" className="p-3"  onChange={(e) => handleChange(e.target) } accept=".jpg, .jpeg, .png"/>
-                </div>
-                
-                
-            </div>
-            <div className='divPerfil'>
-                {images.map((row, index) =>
-                    <div key={index} className='divImgPerfil'>
-                        <img src={row} alt={row} className='imgPerfil'/>
-                        <div class="fa-sharp fa-solid fa-trash" onClick={() => deleteImage(row)}></div>
-                        </div>
-                    )}
 
-            
+                <FloatingLabel key="img" controlId="floatingImg" label="Cargar URL de la imagen" className='mt-3 mb-3'>
+                    <Form.Control name="imagen1" type="text" placeholder="Inserte una imagen" required onChange={handleSetUsuario}/>
+                </FloatingLabel>
             </div>
-            <Button variant="dark" >Guardar</Button>{' '}
+            
+            <Button variant="dark" onClick={guardarPublicacion} >Guardar</Button>{' '}
                 <Button variant="secondary" onClick={cancelar}>Cancelar</Button>
         </div>
     )
